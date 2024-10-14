@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 //}));
 
 app.use('/api', createProxyMiddleware({
-  target: 'https://api.example.com',
+  target: 'https://script.google.com/macros/s/AKfycbymucHyMeANwDRi7xtl0IbXppo4PJt8DgWmsAK4g-KMBKuZ6veqCZymTy2GpVqPVLX5/exec',
   changeOrigin: true,
   preserveHeaderKeyCase: true,
   cookieDomainRewrite: { '*': '' },
