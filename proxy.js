@@ -15,23 +15,22 @@ app.use('/api', createProxyMiddleware({
   pathRewrite: {
     '^/api': '/macros/s/AKfycbymucHyMeANwDRi7xtl0IbXppo4PJt8DgWmsAK4g-KMBKuZ6veqCZymTy2GpVqPVLX5/exec'
   },
-  preserveHeaderKeyCase: true,
-  cookieDomainRewrite: { '*': '' },
-  headers: {
-    'Cookie': req => req.headers.cookie || '',
-  },
   onProxyReq: (proxyReq, req, res) => {
-    // 원본 요청의 헤더를 프록시 요청에 복사
-    Object.keys(req.headers).forEach(function (key) {
-      proxyReq.setHeader(key, req.headers[key]);
-    });
-
-    // 원본 쿠키를 프록시 요청에 포함
-    if (req.headers.cookie) {
-      proxyReq.setHeader('Cookie', req.headers.cookie);
-    }
+    // 원본 URL의 쿼리 문자열을 유지
+    const originalUrl = new URL(req.url, `http://${req.headers.host}`);
+    proxyReq.path = '/macros/s/AKfycbymucHyMeANwDRi7xtl0IbXppo4PJt8DgWmsAK4g-KMBKuZ6veqCZymTy2GpVqPVLX5/exec' + originalUrl.search;
+    
+    console.log('Proxying request to:', proxyReq.path);
+  },
+  onProxyRes: (proxyRes, req, res) => {
+    console.log('Received response:', proxyRes.statusCode);
+  },
+  onError: (err, req, res) => {
+    console.error('Proxy error:', err);
+    res.status(500).send('Proxy error: ' + err.message);
   }
 }));
+
 
 app.listen(PORT, () => {
   console.log(`Proxy server running on port ${PORT}`);
