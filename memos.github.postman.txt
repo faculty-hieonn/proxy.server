@@ -1,0 +1,11 @@
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/your-username/render-proxy-server.git
+git push -u origin main
+
+
+https://proxy-server-xzfo.onrender.com/api?action=insert&table=visitors&data={"id":"id_test","landingUrl":"yonsei.ac.kr","ip":"192.168.0.1","referer":"https://instagram.com/yonsei","time_stamp":"2024-03-29 13:00:00","utm":"twitter","device":"mobile"}
+
+https://script.google.com/macros/s/AKfycbymucHyMeANwDRi7xtl0IbXppo4PJt8DgWmsAK4g-KMBKuZ6veqCZymTy2GpVqPVLX5/exec?action=insert&table=visitors&data={"id":"id_test","landingUrl":"yonsei.ac.kr","ip":"192.168.0.1","referer":"https://postman.com/yonsei","time_stamp":"2024-03-29 13:00:00","utm":"twitter","device":"mobile"}
